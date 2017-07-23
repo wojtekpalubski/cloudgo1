@@ -1,0 +1,1 @@
+# przyk³ad z kursu
