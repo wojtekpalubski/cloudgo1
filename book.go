@@ -25,3 +25,12 @@ func GetBook(isbn string) (Book, bool) {
 	book, found := books[isbn]
 	return book, found
 }
+
+func CreateBook(book Book) (string, bool) {
+	_, exists := books[book.ISBN]
+	if exists {
+		return "", false
+	}
+	books[book.ISBN] = book
+	return book.ISBN, true
+}
