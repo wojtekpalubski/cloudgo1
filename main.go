@@ -16,6 +16,20 @@ func main() {
 	})
 
 	engine.GET("/hello", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"message": "gin hello framework"}) })
+
+	engine.GET("/api/books", func(c *gin.Context) {
+		c.JSON(http.StatusOK, AllBooks())
+	})
+	engine.GET("/api/books/:isbn", func(c *gin.Context) {
+		isbn := c.Params.ByName("isbn")
+		book, found := GetBook(isbn)
+		if found {
+			c.JSON(http.StatusOK, book)
+		} else {
+			c.AbortWithStatus(http.StatusNotFound)
+		}
+	})
+
 	engine.Run(port())
 }
 
