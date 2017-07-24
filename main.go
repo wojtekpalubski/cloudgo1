@@ -29,6 +29,18 @@ func main() {
 			c.AbortWithStatus(http.StatusNotFound)
 		}
 	})
+	engine.POST("/api/books", func(c *gin.Context) {
+		var book Book
+		if c.BindJSON(&book) == nil {
+			isbn, created := CreateBook(book)
+			if created {
+				c.Header("Location", "/api/books/"+isbn)
+				c.Status(http.StatusCreated)
+			} else {
+				c.AbortWithStatus(http.StatusConflict)
+			}
+		}
+	})
 
 	engine.Run(port())
 }
