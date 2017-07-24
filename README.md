@@ -1,1 +1,1 @@
-# przyk³ad z kursu
+# przykï¿½ad z kursu mikrousÅ‚ugi w go z frameworkiem gin
