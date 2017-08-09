@@ -14,6 +14,9 @@ func main() {
 	engine.GET("/ping", func(c *gin.Context) {
 		c.String(http.StatusOK, "pong")
 	})
+	engine.GET("/health", func(c *gin.Context) {
+		c.String(http.StatusOK, "1")
+	})
 
 	engine.GET("/hello", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"message": "gin hello framework"}) })
 
